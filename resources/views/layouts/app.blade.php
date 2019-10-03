@@ -42,6 +42,16 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                        @if (\Request::is('board/*'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="" data-toggle="modal" data-target="#AddMember">Add Member</a>
+                        </li>
+                        @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="" data-toggle="modal" data-target="#AddBoard">Add Board</a>
+                        </li>
+                        @endif
+
                         @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -81,7 +91,7 @@
         </main>
     </div>
 </body>
-    <script src="{{ asset('js/app.js') }}" ></script>
+<script src="{{ asset('js/app.js') }}"></script>
 
 @yield('javascript')
 

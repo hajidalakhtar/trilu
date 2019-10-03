@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Board;
+use App\BoardMaster;
 use App\Todo;
+use App\Member;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,11 +29,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $board = Board::where('auth_id', Auth::user()->id)->get();
-        $todo = Todo::all();
+        $member = Member::where('id_tamu', Auth::user()->id)->get();
+        $board = BoardMaster::where('auth_id', Auth::user()->id)->get();
         return view('home', [
-            'board' => $board,
-            'todo' => $todo
+            "board" => $board,
+            'member' => $member,
+
         ]);
     }
 }

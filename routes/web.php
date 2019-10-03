@@ -12,12 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/home');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/board/{id}', 'MainController@ViewDetailBoard')->name('details.board');
+
+Route::POST('/add/board/master', 'MainController@PostAddBoardMaster')->name('add.master.board');
+Route::POST('/add/member', 'MainController@addMember')->name('add.member');
+
 
 Route::post('/add/board', 'MainController@PostAddBoard')->name('add.board');
 Route::post('/add/todo', 'MainController@PostTodo')->name('add.todo');
